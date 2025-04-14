@@ -5,7 +5,7 @@ import { Box, Pagination, Typography, IconButton, TextField } from "@mui/materia
 import ImageCard from "./ImageCard";
 import ImageModal from "./ImageModal";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "@/store";
+import { RootState, AppDispatch } from "@/store/store";
 import { fetchImages } from "@/store/imageSlice";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { supabase } from "@/utils/supabaseClient";

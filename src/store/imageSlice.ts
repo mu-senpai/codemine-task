@@ -4,6 +4,7 @@ import { supabase } from '@/utils/supabaseClient';
 export type ImageType = {
   id: string;
   title: string;
+  tags: string;
   url: string;
 };
 
