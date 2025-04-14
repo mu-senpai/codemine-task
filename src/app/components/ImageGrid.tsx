@@ -38,7 +38,7 @@ export default function ImageGrid() {
   );
 
   return (
-    <Box className="relative min-h-screen pb-6">
+    <Box className="relative min-h-screen pb-12">
       <TextField
         fullWidth
         label="Search by title or tags"
