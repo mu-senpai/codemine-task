@@ -51,8 +51,6 @@ export default function UploadModal() {
   };
 
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
-    setUploadSuccess(false);
-    
     if (!title) {
       alert("Please enter image title before uploading.");
       return;
@@ -98,6 +96,10 @@ export default function UploadModal() {
     setUploading(false);
     setUploadSuccess(true);
     dispatch(fetchImages(1));
+
+    setTimeout(() => {
+      setUploadSuccess(false);
+    }, 3000);
   }, [title, tags, dispatch]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });

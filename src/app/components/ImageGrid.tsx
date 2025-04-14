@@ -62,10 +62,10 @@ export default function ImageGrid() {
               />
               <IconButton
                 onClick={() => handleDelete(img.id, img.url)}
-                className="absolute bottom-8 left-1 bg-black/50 text-white opacity-0 group-hover:opacity-100 transition"
+                className="absolute bottom-8 left-1 bg-black/50 text-white opacity-50 group-hover:opacity-100 transition"
                 size="small"
               >
-                <DeleteIcon fontSize="small" />
+                <DeleteIcon fontSize="small" className="text-white" />
               </IconButton>
             </div>
           ))}
