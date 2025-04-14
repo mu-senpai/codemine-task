@@ -78,7 +78,7 @@ export default function ImageGrid() {
 
       <Box display="flex" justifyContent="center" className="absolute bottom-4 left-1/2 -translate-x-1/2">
         <Pagination
-          count={Math.ceil(1 + images.length / 12)}
+          count={Math.ceil(images.length / 12)}
           page={page}
           onChange={(e, val) => setPage(val)}
         />
