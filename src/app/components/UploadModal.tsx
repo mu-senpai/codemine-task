@@ -48,11 +48,11 @@ export default function UploadModal() {
 
   const handleClose = () => {
     setOpen(false);
-    setTitle("");
-    setTags("");
   };
 
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
+    setUploadSuccess(false);
+    
     if (!title) {
       alert("Please enter image title before uploading.");
       return;
@@ -93,6 +93,8 @@ export default function UploadModal() {
       }
     }
 
+    setTitle("");
+    setTags("");
     setUploading(false);
     setUploadSuccess(true);
     dispatch(fetchImages(1));
