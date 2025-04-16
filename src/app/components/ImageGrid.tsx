@@ -1,14 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Box, Pagination, Typography, IconButton, TextField } from "@mui/material";
+import { Box, Pagination, Typography, TextField } from "@mui/material";
 import ImageCard from "./ImageCard";
 import ImageModal from "./ImageModal";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "@/store/store";
 import { fetchImages } from "@/store/imageSlice";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { supabase } from "@/utils/supabaseClient";
 
 export default function ImageGrid() {
   const [page, setPage] = useState(1);
@@ -23,15 +21,6 @@ export default function ImageGrid() {
     dispatch(fetchImages(page));
   }, [page, dispatch]);
 
-  const handleDelete = async (id: string, url: string) => {
-    await supabase.from("images").delete().eq("id", id);
-
-    const path = url.split("/storage/v1/object/public/")[1];
-    await supabase.storage.from("images").remove([path]);
-
-    dispatch(fetchImages(page));
-  };
-
   const filteredImages = images.filter((img) =>
     img.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     img.tags?.toLowerCase().includes(searchTerm.toLowerCase())
@@ -39,13 +28,14 @@ export default function ImageGrid() {
 
   return (
     <Box className="relative min-h-screen pb-12">
-      <TextField
-        fullWidth
-        label="Search by title or tags"
-        sx={{ mb: 3 }}
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
+      <div className="mb-4 sm:mb-6 lg:mb-8">
+        <TextField
+          fullWidth
+          label="Search by title or tags"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
 
       {loading ? (
         <Typography textAlign="center" mt={10}>
@@ -54,20 +44,14 @@ export default function ImageGrid() {
       ) : filteredImages.length ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {filteredImages.map((img) => (
-            <div key={img.id} className="relative group">
-              <ImageCard
-                url={img.url}
-                title={img.title}
-                onClick={() => setSelectedImage(img.url)}
-              />
-              <IconButton
-                onClick={() => handleDelete(img.id, img.url)}
-                className="absolute bottom-8 left-1 bg-black/50 text-white opacity-50 group-hover:opacity-100 transition"
-                size="small"
-              >
-                <DeleteIcon fontSize="small" className="text-white" />
-              </IconButton>
-            </div>
+            <ImageCard
+              key={img.id}
+              url={img.url}
+              title={img.title}
+              page={page}
+              img={img}
+              onClick={() => setSelectedImage(img.url)}
+            />
           ))}
         </div>
       ) : (

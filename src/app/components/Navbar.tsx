@@ -6,7 +6,7 @@ import UploadModal from "./UploadModal";
 
 export default function Navbar() {
   return (
-    <AppBar position="static" color="primary">
+    <AppBar sx={{ position: "sticky", top: 0 }} color="primary">
       <Toolbar>
         <PhotoLibraryIcon sx={{ mr: 1 }} />
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>

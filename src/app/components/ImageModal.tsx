@@ -21,7 +21,6 @@ export default function ImageModal({ open, handleClose, url }: Props) {
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          border: "none"
         }}
       >
         <Image
