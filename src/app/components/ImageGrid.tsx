@@ -42,7 +42,7 @@ export default function ImageGrid() {
           Loading...
         </Typography>
       ) : filteredImages.length ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-x-4">
           {filteredImages.map((img) => (
             <ImageCard
               key={img.id}
